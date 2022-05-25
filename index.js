@@ -103,6 +103,13 @@ async function run() {
             res.send(addProduct)
         })
 
+        //Add Purchase
+        app.post('/purchase', async (req, res) => {
+            const purchaseTool = req.body;
+            const result = await PurchaseCollection.insertOne(purchaseTool);
+            res.send(result)
+        })
+
 
     }
     finally {
