@@ -84,6 +84,12 @@ async function run() {
 
         })
 
+        //User Info
+        app.get('/showAllUser', async (req, res) => {
+            const allUser = await userCollection.find({}).toArray();
+            res.send(allUser)
+        })
+
 
     }
     finally {
