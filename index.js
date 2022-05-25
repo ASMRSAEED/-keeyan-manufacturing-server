@@ -110,6 +110,18 @@ async function run() {
             res.send(result)
         })
 
+        //Create Payment
+        app.post('/create-payment', async (req, res) => {
+            const { newPrice } = req.body;
+            const amount = newPrice * 100;
+            const payment = await stripe.paymentIntents.create({
+                amount: amount,
+                currency: 'usd',
+                payment_method_types: ['card']
+            })
+            res.send({ clientSecret: payment.client_secret })
+        })
+
 
     }
     finally {
