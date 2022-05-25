@@ -13,12 +13,13 @@ const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
     console.log(authHeader)
     if (!authHeader) {
-        res.status(401).send({ message: "unAuthorization" })
+        res.status(401).send({ message: "Unauthorized" })
     }
+
     const token = authHeader.split(' ')[1];
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function (err, decoded) {
         if (err) {
-            return res.status(403).send({ message: 'forbiddenAccess' })
+            return res.status(403).send({ message: 'Forbidden' })
         }
         req.decoded = decoded
         next()
@@ -27,6 +28,8 @@ const verifyToken = (req, res, next) => {
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.0k0nk.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
+
 
 async function run() {
     try {
@@ -226,11 +229,6 @@ async function run() {
         })
 
 
-
-
-
-
-
     }
     finally {
 
@@ -238,13 +236,6 @@ async function run() {
 }
 
 run().catch(console.dir);
-
-
-
-
-
-
-
 
 
 
