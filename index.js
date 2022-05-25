@@ -47,6 +47,20 @@ async function run() {
             res.send(findTool)
         })
 
+        //Get Order From Server
+        app.get('/orders', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email }
+            const orders = await PurchaseCollection.find(query).toArray();
+            res.send(orders)
+        })
+        app.get('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const orders = await PurchaseCollection.find(query).toArray();
+            res.send(orders)
+        })
+
     }
     finally {
 
