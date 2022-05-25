@@ -90,6 +90,12 @@ async function run() {
             res.send(allUser)
         })
 
+        //Order Info
+        app.get('/allOrders', async (req, res) => {
+            const allOrders = await PurchaseCollection.find().toArray();
+            res.send(allOrders)
+        })
+
 
     }
     finally {
