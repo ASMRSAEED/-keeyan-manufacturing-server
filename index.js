@@ -96,6 +96,13 @@ async function run() {
             res.send(allOrders)
         })
 
+        //Add Product
+        app.post('/addProduct', verifyToken, async (req, res) => {
+            const productDetail = req.body;
+            const addProduct = await toolsCollection.insertOne(productDetail);
+            res.send(addProduct)
+        })
+
 
     }
     finally {
