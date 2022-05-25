@@ -196,6 +196,19 @@ async function run() {
             res.send(result)
         })
 
+        //Update Payment
+        app.put('/updatePaid/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: ObjectId(id) };
+            const updatePaid = {
+                $set: {
+                    shipped: 'shipped'
+                }
+            }
+            const result = await PurchaseCollection.updateOne(filter, updatePaid);
+            res.send(result)
+        })
+
 
 
 
