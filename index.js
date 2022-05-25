@@ -61,6 +61,14 @@ async function run() {
             res.send(orders)
         })
 
+        ////Get Review From Server
+        app.get('/reviews', async (req, res) => {
+            const reviews = await reviewCollection.find().toArray();
+            res.send(reviews)
+        })
+
+        
+
     }
     finally {
 
