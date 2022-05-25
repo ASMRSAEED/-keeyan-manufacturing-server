@@ -129,6 +129,12 @@ async function run() {
             res.send(addReview)
         })
 
+        //Add Profile
+        app.post('/addProfile', verifyToken, async (req, res) => {
+            const profile = req.body;
+            const addProfile = await profileCollection.insertOne(profile);
+            res.send(addProfile)
+        })
 
     }
     finally {
