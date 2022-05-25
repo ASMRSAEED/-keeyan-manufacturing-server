@@ -151,6 +151,31 @@ async function run() {
             res.send(updatePayment)
         })
 
+        //Update Profile
+        app.put('/profileUpdate/:id', verifyToken, async (req, res) => {
+            const id = req.params.id;
+            console.log(req.headers.authorization)
+            const profile = req.body;
+            const filter = { _id: ObjectId(id) };
+            const updateDoc = {
+                $set: {
+                    education: profile.education,
+                    location: profile.location,
+                    number: profile.number,
+                    linkDin: profile.linkDin,
+                },
+            };
+            const result = await profileCollection.updateOne(filter, updateDoc);
+            res.send(result)
+        })
+
+
+
+
+
+
+
+
     }
     finally {
 
