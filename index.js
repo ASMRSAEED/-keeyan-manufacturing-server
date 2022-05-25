@@ -61,7 +61,7 @@ async function run() {
             res.send(orders)
         })
 
-        //Get Review From Server
+        //Review Info
         app.get('/reviews', async (req, res) => {
             const reviews = await reviewCollection.find().toArray();
             res.send(reviews)
@@ -120,6 +120,13 @@ async function run() {
                 payment_method_types: ['card']
             })
             res.send({ clientSecret: payment.client_secret })
+        })
+
+        //Add Review
+        app.post('/addReview', async (req, res) => {
+            const review = req.body;
+            const addReview = await reviewCollection.insertOne(review);
+            res.send(addReview)
         })
 
 
