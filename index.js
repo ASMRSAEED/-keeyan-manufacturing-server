@@ -61,13 +61,20 @@ async function run() {
             res.send(orders)
         })
 
-        ////Get Review From Server
+        //Get Review From Server
         app.get('/reviews', async (req, res) => {
             const reviews = await reviewCollection.find().toArray();
             res.send(reviews)
         })
 
-        
+        //Profile Info
+        app.get('/profile', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email }
+            const profile = await profileCollection.find(query).toArray();
+            res.send(profile)
+        })
+
 
     }
     finally {
