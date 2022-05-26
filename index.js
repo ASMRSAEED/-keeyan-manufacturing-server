@@ -35,6 +35,10 @@ async function run() {
     try {
         await client.connect();
         const toolsCollection = client.db("Products").collection("tools");
+        const PurchaseCollection = client.db("Products").collection("purchase");
+        const reviewCollection = client.db("Products").collection("reviews");
+        const profileCollection = client.db("Products").collection("addProfile");
+        const userCollection = client.db("Products").collection("AllUsers");
 
 
         //Get All Tools From Server
