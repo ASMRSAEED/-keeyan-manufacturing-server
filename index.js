@@ -119,7 +119,7 @@ async function run() {
         })
 
         //Create Payment
-        app.post('/create-payment', verifyToken, async (req, res) => {
+        app.post('/create-payment', async (req, res) => {
             const { newPrice } = req.body;
             const amount = newPrice * 100;
             const payment = await stripe.paymentIntents.create({
